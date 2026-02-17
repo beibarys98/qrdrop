@@ -1,0 +1,29 @@
+<html>
+<body>
+<h3>Connected</h3>
+
+<div id="box"></div>
+<button onclick="copy()">Copy</button>
+
+<input id="text">
+<button onclick="send()">Send to PC</button>
+
+<script>
+let last="";
+let ws=new WebSocket("ws://localhost:8000/ws/{{token}}");
+
+ws.onmessage=e=>{
+ last=e.data;
+ document.getElementById("box").innerText=last;
+}
+
+function copy(){
+ navigator.clipboard.writeText(last);
+}
+
+function send(){
+ ws.send(document.getElementById("text").value);
+}
+</script>
+</body>
+</html>

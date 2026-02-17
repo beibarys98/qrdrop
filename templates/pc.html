@@ -1,0 +1,23 @@
+<html>
+<body>
+<h2>Scan QR</h2>
+<img src="{{qr}}" width="200">
+
+<input id="text">
+<button onclick="send()">Send</button>
+
+<div id="box"></div>
+
+<script>
+let ws=new WebSocket("ws://localhost:8000/ws/{{token}}");
+
+ws.onmessage=e=>{
+ document.getElementById("box").innerText=e.data;
+}
+
+function send(){
+ ws.send(document.getElementById("text").value);
+}
+</script>
+</body>
+</html>
