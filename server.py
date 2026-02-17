@@ -27,7 +27,7 @@ async def home(request: Request):
     token = str(uuid.uuid4())[:6]
 
     # IMPORTANT: use LAN IP later for phone testing
-    url = f"https://qrdrop.onrender.com//{token}"
+    url = f"https://qrdrop.onrender.com/{token}"
 
     img = qrcode.make(url)
 
